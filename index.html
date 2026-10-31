@@ -29,15 +29,16 @@
   a{color:#0645ad}
 
   @media (max-width: 680px){
-    body{margin:20px auto}
-    table, thead, tbody, tfoot, tr, th, td{display:block;width:100%}
-    thead{display:none}
-    tr{border:1px solid #bbb;margin:0 0 12px;padding:6px 10px}
-    td{border:0;border-bottom:1px dashed #ddd;display:grid;grid-template-columns:6.5em 1fr;gap:8px;
-       text-align:left!important;padding:6px 0;white-space:normal}
+    body{margin:20px auto;padding:0 14px}
+    table,tbody,tfoot,tr,td{display:block;width:auto}
+    thead,caption{display:none}
+    tr{border:1px solid #bbb;margin:0 0 12px;padding:8px 12px}
+    td{border:0;border-bottom:1px dashed #ddd;padding:6px 0;text-align:left!important;
+       white-space:normal;word-break:break-word}
     td:last-child{border-bottom:0}
-    td::before{content:attr(data-label);font-weight:600;color:#333}
-    td.idx,td.pdf{grid-template-columns:6.5em 1fr}
+    td::before{content:attr(data-label);display:inline-block;width:5.6em;font-weight:600;
+       color:#333;vertical-align:top}
+    td .sub{display:block;margin-left:5.6em}
     tr.total{border:2px solid #666;background:#fafafa}
     tr.total td{font-weight:600}
   }
