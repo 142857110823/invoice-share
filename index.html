@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
@@ -32,17 +32,17 @@
   td::before{content:none}
 
   @media (max-width: 680px){
-    body{margin:20px auto;padding:0 14px;font-size:15px}
+    body{margin:20px auto;padding:0 14px;font-size:15px;width:100%;max-width:100%;overflow-x:hidden}
     .meta{grid-template-columns:5em minmax(0,1fr);font-size:13.5px}
 
-    table,tbody,tfoot,tr,td{display:block;width:auto}
+    table,tbody,tfoot{display:block;width:100%;max-width:100%}
     thead,caption{display:none}
-    tr{border:1px solid var(--line);padding:4px 12px;margin:0 0 12px}
-    td{border:0;border-bottom:1px dashed #ddd;padding:7px 0;display:flex;gap:10px;
-       align-items:flex-start;text-align:left!important;white-space:normal}
+    tr{border:1px solid var(--line);padding:4px 12px;margin:0 0 12px;width:100%;max-width:100%;box-sizing:border-box}
+    td{border:0;border-bottom:1px dashed #ddd;padding:7px 0;display:block;
+       text-align:left!important;white-space:normal}
     td:last-child{border-bottom:0}
-    td::before{content:attr(data-label);flex:0 0 4.2em;font-weight:600;color:#333;white-space:nowrap}
-    .v{flex:1 1 auto;min-width:0;overflow-wrap:anywhere}
+    td::before{content:attr(data-label);display:block;font-size:13px;color:#555;font-weight:600;margin-bottom:1px}
+    .v{display:block;min-width:0;width:100%;overflow-wrap:anywhere}
     .v.num,.v.date{font-variant-numeric:tabular-nums}
     tr.total{border:2px solid #666;background:#fafafa}
   }
