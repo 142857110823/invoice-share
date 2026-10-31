@@ -5,42 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>发票清单</title>
 <style>
+  :root{--line:#bbb;--head:#f2f2f2;--sub:#555}
+  *{box-sizing:border-box}
   body{font:15px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
        max-width:860px;margin:32px auto;padding:0 16px;color:#000;background:#fff}
 
-  h1{font-size:18px;font-weight:600;margin:0 0 14px;text-align:center;letter-spacing:2px}
+  h1{font-size:18px;font-weight:600;margin:0 0 16px;text-align:center;letter-spacing:2px}
 
-  .meta{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px;margin:0 auto 20px;max-width:620px}
-  .meta dt{color:#000;font-weight:600}
-  .meta dd{margin:0}
+  .meta{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:4px 12px;font-size:14px;
+        margin:0 0 20px;padding:0}
+  .meta dt{font-weight:600;text-align:left}
+  .meta dd{margin:0;min-width:0;overflow-wrap:anywhere}
 
-  table{width:100%;border-collapse:collapse;font-size:14px}
-  caption{caption-side:top;text-align:left;font-size:14px;font-weight:600;margin-bottom:8px}
-  th,td{border:1px solid #bbb;padding:7px 9px;vertical-align:middle}
-  th{background:#f2f2f2;font-weight:600;text-align:center;white-space:nowrap}
-  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-  td.date{text-align:center;white-space:nowrap}
-  td.idx{text-align:center;width:48px}
-  td.pdf{text-align:center;white-space:nowrap}
-  td .sub{display:block;font-size:12px;color:#555;margin-top:2px}
+  table{width:100%;border-collapse:collapse;font-size:14px;table-layout:auto}
+  caption{caption-side:top;text-align:left;font-size:14px;font-weight:600;padding-bottom:8px}
+  th,td{border:1px solid var(--line);padding:7px 9px;vertical-align:middle}
+  th{background:var(--head);font-weight:600;text-align:center;white-space:nowrap}
+  td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  td.date,td.idx,td.pdf{text-align:center;white-space:nowrap}
+  td.idx{width:52px}
+  .sub{display:block;font-size:12px;color:var(--sub);margin-top:2px;font-weight:400}
   tr.total td{font-weight:600;background:#fafafa}
   tr.total td.num{font-size:15px}
   tfoot td{border-top:2px solid #666}
   a{color:#0645ad}
+  td::before{content:none}
 
   @media (max-width: 680px){
-    body{margin:20px auto;padding:0 14px}
+    body{margin:20px auto;padding:0 14px;font-size:15px}
+    .meta{grid-template-columns:5em minmax(0,1fr);font-size:13.5px}
+
     table,tbody,tfoot,tr,td{display:block;width:auto}
     thead,caption{display:none}
-    tr{border:1px solid #bbb;margin:0 0 12px;padding:8px 12px}
-    td{border:0;border-bottom:1px dashed #ddd;padding:6px 0;text-align:left!important;
-       white-space:normal;word-break:break-word}
+    tr{border:1px solid var(--line);padding:4px 12px;margin:0 0 12px}
+    td{border:0;border-bottom:1px dashed #ddd;padding:7px 0;display:flex;gap:10px;
+       align-items:flex-start;text-align:left!important;white-space:normal}
     td:last-child{border-bottom:0}
-    td::before{content:attr(data-label);display:inline-block;width:5.6em;font-weight:600;
-       color:#333;vertical-align:top}
-    td .sub{display:block;margin-left:5.6em}
+    td::before{content:attr(data-label);flex:0 0 4.2em;font-weight:600;color:#333;white-space:nowrap}
+    .v{flex:1 1 auto;min-width:0;overflow-wrap:anywhere}
+    .v.num,.v.date{font-variant-numeric:tabular-nums}
     tr.total{border:2px solid #666;background:#fafafa}
-    tr.total td{font-weight:600}
   }
 </style>
 </head>
@@ -49,13 +53,13 @@
 <h1>发票清单</h1>
 
 <dl class="meta">
-  <dt>购买方</dt><dd>西北农林科技大学（统一社会信用代码 12100000437096236G）</dd>
+  <dt>购买方</dt><dd>西北农林科技大学　统一社会信用代码 12100000437096236G</dd>
   <dt>开具日期</dt><dd>2026-10-30 至 2026-10-31</dd>
   <dt>发票张数</dt><dd>4 张（电子发票 · 普通发票）</dd>
 </dl>
 
 <table>
-  <caption>明细</caption>
+  <caption>发票明细</caption>
   <thead>
     <tr>
       <th>序号</th>
@@ -69,53 +73,53 @@
   </thead>
   <tbody>
     <tr>
-      <td class="idx" data-label="序号">1</td>
-      <td class="date" data-label="开票日期">2026-10-30</td>
-      <td data-label="销售方 / 项目">中科视拓（南京）科技有限公司 · 云服务器租赁服务费
-        <span class="sub">票号 26322000009053188186 · 税率 6%</span></td>
-      <td class="num" data-label="金额">287.74</td>
-      <td class="num" data-label="税额">17.26</td>
-      <td class="num" data-label="价税合计">305.00</td>
-      <td class="pdf" data-label="发票文件"><a href="invoice-20261030-305-cloud-server.pdf">下载 PDF</a></td>
+      <td class="idx" data-label="序号"><span class="v">1</span></td>
+      <td class="date" data-label="日期"><span class="v">2026-10-30</span></td>
+      <td data-label="销售方"><span class="v">中科视拓（南京）科技有限公司 · 云服务器租赁服务费
+        <span class="sub">票号 26322000009053188186　税率 6%</span></span></td>
+      <td class="num" data-label="金额"><span class="v num">287.74</span></td>
+      <td class="num" data-label="税额"><span class="v num">17.26</span></td>
+      <td class="num" data-label="合计"><span class="v num">305.00</span></td>
+      <td class="pdf" data-label="文件"><span class="v"><a href="invoice-20261030-305-cloud-server.pdf">下载 PDF</a></span></td>
     </tr>
     <tr>
-      <td class="idx" data-label="序号">2</td>
-      <td class="date" data-label="开票日期">2026-10-30</td>
-      <td data-label="销售方 / 项目">杭州深度求索人工智能基础技术研究有限公司 · 技术服务费
-        <span class="sub">票号 26332000009412680856 · 税率 6%</span></td>
-      <td class="num" data-label="金额">113.21</td>
-      <td class="num" data-label="税额">6.79</td>
-      <td class="num" data-label="价税合计">120.00</td>
-      <td class="pdf" data-label="发票文件"><a href="invoice-20261030-120-deepseek-service.pdf">下载 PDF</a></td>
+      <td class="idx" data-label="序号"><span class="v">2</span></td>
+      <td class="date" data-label="日期"><span class="v">2026-10-30</span></td>
+      <td data-label="销售方"><span class="v">杭州深度求索人工智能基础技术研究有限公司 · 技术服务费
+        <span class="sub">票号 26332000009412680856　税率 6%</span></span></td>
+      <td class="num" data-label="金额"><span class="v num">113.21</span></td>
+      <td class="num" data-label="税额"><span class="v num">6.79</span></td>
+      <td class="num" data-label="合计"><span class="v num">120.00</span></td>
+      <td class="pdf" data-label="文件"><span class="v"><a href="invoice-20261030-120-deepseek-service.pdf">下载 PDF</a></span></td>
     </tr>
     <tr>
-      <td class="idx" data-label="序号">3</td>
-      <td class="date" data-label="开票日期">2026-10-31</td>
-      <td data-label="销售方 / 项目">福建柠青科技有限公司 · 研发和技术服务、AI大模型接口
-        <span class="sub">票号 26352000002535196951 · 税率 1%</span></td>
-      <td class="num" data-label="金额">335.64</td>
-      <td class="num" data-label="税额">3.36</td>
-      <td class="num" data-label="价税合计">339.00</td>
-      <td class="pdf" data-label="发票文件"><a href="invoice-20261031-339-ai-api.pdf">下载 PDF</a></td>
+      <td class="idx" data-label="序号"><span class="v">3</span></td>
+      <td class="date" data-label="日期"><span class="v">2026-10-31</span></td>
+      <td data-label="销售方"><span class="v">福建柠青科技有限公司 · 研发和技术服务、AI大模型接口
+        <span class="sub">票号 26352000002535196951　税率 1%</span></span></td>
+      <td class="num" data-label="金额"><span class="v num">335.64</span></td>
+      <td class="num" data-label="税额"><span class="v num">3.36</span></td>
+      <td class="num" data-label="合计"><span class="v num">339.00</span></td>
+      <td class="pdf" data-label="文件"><span class="v"><a href="invoice-20261031-339-ai-api.pdf">下载 PDF</a></span></td>
     </tr>
     <tr>
-      <td class="idx" data-label="序号">4</td>
-      <td class="date" data-label="开票日期">2026-10-31</td>
-      <td data-label="销售方 / 项目">腾讯云计算（北京）有限责任公司 · 云服务费
-        <span class="sub">票号 26117000001709887328 · 税率 6%</span></td>
-      <td class="num" data-label="金额">66.04</td>
-      <td class="num" data-label="税额">3.96</td>
-      <td class="num" data-label="价税合计">70.00</td>
-      <td class="pdf" data-label="发票文件"><a href="invoice-20261031-70-tencent-cloud.pdf">下载 PDF</a></td>
+      <td class="idx" data-label="序号"><span class="v">4</span></td>
+      <td class="date" data-label="日期"><span class="v">2026-10-31</span></td>
+      <td data-label="销售方"><span class="v">腾讯云计算（北京）有限责任公司 · 云服务费
+        <span class="sub">票号 26117000001709887328　税率 6%</span></span></td>
+      <td class="num" data-label="金额"><span class="v num">66.04</span></td>
+      <td class="num" data-label="税额"><span class="v num">3.96</span></td>
+      <td class="num" data-label="合计"><span class="v num">70.00</span></td>
+      <td class="pdf" data-label="文件"><span class="v"><a href="invoice-20261031-70-tencent-cloud.pdf">下载 PDF</a></span></td>
     </tr>
   </tbody>
   <tfoot>
     <tr class="total">
-      <td class="idx" data-label="合计" colspan="3">合计 4 张</td>
-      <td class="num" data-label="金额合计">802.63</td>
-      <td class="num" data-label="税额合计">31.37</td>
-      <td class="num" data-label="价税合计">834.00</td>
-      <td class="pdf" data-label="发票文件">—</td>
+      <td class="idx" data-label="合计" colspan="3"><span class="v">合计 4 张</span></td>
+      <td class="num" data-label="金额"><span class="v num">802.63</span></td>
+      <td class="num" data-label="税额"><span class="v num">31.37</span></td>
+      <td class="num" data-label="合计"><span class="v num">834.00</span></td>
+      <td class="pdf" data-label="文件"><span class="v">—</span></td>
     </tr>
   </tfoot>
 </table>
